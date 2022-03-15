@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
-import ContactForm from './ContactForm';
-import Filter from './Filter';
-import ContactList from './ContactList';
+import ContactForm from '../ContactForm';
+import Filter from '../Filter';
+import ContactList from '../ContactList';
 import useLocalStorage from 'hooks/useLocalStorage';
+import { Container, MainTitle, Title } from './App.styled';
 
 function App() {
   const [contacts, setContacts] = useLocalStorage('contactList', []);
@@ -45,10 +46,10 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <h1>Phone Book</h1>
+    <Container>
+      <MainTitle>Phone Book</MainTitle>
       <ContactForm onSubmit={formSubmit} />
-      <h2>Contacts</h2>
+      <Title>Contacts</Title>
       <Filter
         title="Find contact by name"
         onChange={handleFilterChange}
@@ -58,7 +59,7 @@ function App() {
         filteredContacts={filteredContacts(filter)}
         onDelete={contactDelete}
       />
-    </div>
+    </Container>
   );
 }
 
